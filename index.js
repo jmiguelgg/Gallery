@@ -3,7 +3,7 @@
  */
 
 import {AppRegistry} from 'react-native';
-import Albums from './src/screens/Albums';
+import Navigator from './src/screens/Navigator';
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => Albums);
+AppRegistry.registerComponent(appName, () => Navigator);

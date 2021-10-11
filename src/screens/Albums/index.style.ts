@@ -5,6 +5,7 @@ import Font from '../../theme/font';
 const styles = StyleSheet.create({
   containerScreen: {
     paddingHorizontal: 10,
+    marginTop: 10,
   },
   loadingContainer: {
     flex: 1,
