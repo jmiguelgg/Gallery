@@ -8,7 +8,7 @@ import Photos from './Photos';
 
 const Stack = createNativeStackNavigator();
 
-function App() {
+function Navigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -19,4 +19,4 @@ function App() {
   );
 }
 
-export default App;
+export default Navigator;
