@@ -10,7 +10,7 @@ interface LoaderProps {
 const Loader: FC<LoaderProps> = ({message}): JSX.Element => (
   <View style={styles.loadingContainer}>
     <ActivityIndicator size="large" color={Color.blue} />
-    <Text style={styles.textLoading}>{message}...</Text>
+    <Text style={styles.textLoading}>{message}</Text>
   </View>
 );
 

@@ -7,6 +7,7 @@ import styles from './index.style';
 import {albumSelected, Context, saveAlbums} from '../../store';
 import useGetAlbums, {IAlbums} from '../../services/useGetAlbums';
 import Loader from '../../components/Loader';
+import storage from '../../store/storage';
 
 interface AlbumsProps {
   navigation: NativeStackNavigationProp<any, any>;
@@ -53,6 +54,11 @@ const Albums: FC<AlbumsProps> = ({navigation}) => {
       setAlbums(paserseAlbums(data));
       if (state.albums.length === 0) {
         dispatch(saveAlbums(data));
+        storage.save({
+          key: 'albums',
+          data,
+          expires: 1000 * 3600 * 3,
+        });
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
