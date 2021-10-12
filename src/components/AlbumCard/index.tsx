@@ -3,7 +3,7 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 import styles from './index.style';
 
 export interface AlbumCardProps {
-  albumId: number;
+  id: number;
   name: string;
   numPhotos: number;
   thumbnail?: string;
@@ -11,14 +11,14 @@ export interface AlbumCardProps {
 }
 
 const AlbumCard: FC<AlbumCardProps> = ({
-  albumId,
+  id,
   name,
   numPhotos,
   thumbnail,
   onPress,
 }): JSX.Element => {
   const handleOnPress = (): void => {
-    onPress(albumId);
+    onPress(id);
   };
 
   return (
