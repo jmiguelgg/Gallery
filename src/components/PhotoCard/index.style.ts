@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     ...Font.large,
     color: Color.back,
     alignSelf: 'center',
+    maxWidth: 220,
   },
 });
 

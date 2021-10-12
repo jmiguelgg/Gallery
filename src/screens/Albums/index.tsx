@@ -6,6 +6,7 @@ import generalStyles from '../Utils/generalStyles.style';
 import styles from './index.style';
 import {albumSelected, Context, saveAlbums} from '../../store';
 import useGetAlbums, {IAlbums} from '../../services/useGetAlbums';
+import Loader from '../../components/Loader';
 
 interface AlbumsProps {
   navigation: NativeStackNavigationProp<any, any>;
@@ -33,6 +34,20 @@ const Albums: FC<AlbumsProps> = ({navigation}) => {
     );
   };
 
+  const renderLoader = (): JSX.Element => (
+    <Loader message="Loading albums..." />
+  );
+
+  const renderAlbums = (): JSX.Element => (
+    <FlatList
+      data={albums}
+      keyExtractor={item => `${item.id}-album`}
+      renderItem={({item}) => <AlbumCard {...item} onPress={seeAlbum} />}
+      numColumns={2}
+      style={styles.containerScreen}
+    />
+  );
+
   useEffect(() => {
     if (data && !isLoading && !errorOcurred) {
       setAlbums(paserseAlbums(data));
@@ -43,13 +58,7 @@ const Albums: FC<AlbumsProps> = ({navigation}) => {
 
   return (
     <SafeAreaView style={generalStyles.mainContainer}>
-      <FlatList
-        data={albums}
-        keyExtractor={item => `${item.id}-album`}
-        renderItem={({item}) => <AlbumCard {...item} onPress={seeAlbum} />}
-        numColumns={2}
-        style={styles.containerScreen}
-      />
+      {isLoading ? renderLoader() : renderAlbums()}
     </SafeAreaView>
   );
 };
