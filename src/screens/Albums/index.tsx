@@ -13,9 +13,9 @@ interface AlbumsProps {
 }
 
 const Albums: FC<AlbumsProps> = ({navigation}) => {
-  const {dispatch} = useContext(Context);
-  const {data, isLoading, errorOcurred} = useGetAlbums();
+  const {state, dispatch} = useContext(Context);
   const [albums, setAlbums] = useState<AlbumCardProps[]>();
+  const {data, isLoading, errorOcurred} = useGetAlbums();
 
   const seeAlbum = (albumId: number): void => {
     dispatch(albumSelected(albumId));
@@ -51,7 +51,9 @@ const Albums: FC<AlbumsProps> = ({navigation}) => {
   useEffect(() => {
     if (data && !isLoading && !errorOcurred) {
       setAlbums(paserseAlbums(data));
-      dispatch(saveAlbums(data));
+      if (state.albums.length === 0) {
+        dispatch(saveAlbums(data));
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, isLoading, errorOcurred]);
