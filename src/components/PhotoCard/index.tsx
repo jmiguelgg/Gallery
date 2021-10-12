@@ -6,7 +6,7 @@ export interface PhotoCardProps {
   id: number;
   name: string;
   thumbnail?: string;
-  onPress: () => void;
+  onPress?: () => void;
 }
 
 const PhotoCard: FC<PhotoCardProps> = ({

@@ -4,7 +4,7 @@ import {SafeAreaView, FlatList} from 'react-native';
 import AlbumCard, {AlbumCardProps} from '../../components/AlbumCard';
 import generalStyles from '../Utils/generalStyles.style';
 import styles from './index.style';
-import {albumSelected, Context} from '../../store';
+import {albumSelected, Context, saveAlbums} from '../../store';
 import useGetAlbums, {IAlbums} from '../../services/useGetAlbums';
 
 interface AlbumsProps {
@@ -36,7 +36,9 @@ const Albums: FC<AlbumsProps> = ({navigation}) => {
   useEffect(() => {
     if (data && !isLoading && !errorOcurred) {
       setAlbums(paserseAlbums(data));
+      dispatch(saveAlbums(data));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, isLoading, errorOcurred]);
 
   return (

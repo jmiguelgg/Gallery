@@ -1,8 +1,10 @@
 import React, {createContext, useReducer} from 'react';
-import {IAction, ALBUM_SELECTED} from './actions';
+import {IAlbums} from '../services/useGetAlbums';
+import {IAction, ALBUM_SELECTED, SAVE_ALBUMS} from './actions';
 
 interface IState {
   albumSelected: number;
+  albums: IAlbums[];
 }
 
 const Reducer = (state: IState, action: IAction): IState => {
@@ -12,6 +14,11 @@ const Reducer = (state: IState, action: IAction): IState => {
         ...state,
         albumSelected: action.payload,
       };
+    case SAVE_ALBUMS:
+      return {
+        ...state,
+        albums: action.payload,
+      };
     default:
       return state;
   }
@@ -19,6 +26,7 @@ const Reducer = (state: IState, action: IAction): IState => {
 
 const initialState = {
   albumSelected: 0,
+  albums: [] as IAlbums[],
 } as IState;
 
 const Context = createContext({

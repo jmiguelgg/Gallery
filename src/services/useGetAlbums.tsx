@@ -9,13 +9,13 @@ export interface IAlbums {
   thumbnail?: string;
 }
 
-interface AlbumsResponse {
+export interface AlbumsResponse {
   userId: number;
   id: number;
   title: string;
 }
 
-interface PhotosResponse {
+export interface PhotosResponse {
   albumId: number;
   id: number;
   title: string;
